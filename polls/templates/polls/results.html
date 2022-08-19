@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<div class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>你好,XXX</h1>
+      <p>热门问题民意调查...</p>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">{{ question.question_text }}</div>
+    <div class="panel-body">
+      <ul class="list-group">
+        {% for choice in question.choice_set.all %}
+          <li class="list-group-item">
+            <span class="badge">{{ choice.votes }} vote{{ choice.votes|pluralize }}</span>
+            {{ choice.choice_text }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="panel-footer">
+      <a href="{% url 'polls:detail' question.id %}" class="list-group-item active">再一次投票</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

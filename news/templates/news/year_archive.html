@@ -1,0 +1,39 @@
+{% extends "news/base.html" %}
+{% load news_extras %}
+
+{% block title %}
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Articles for {{ year }}</li>
+      </ol>
+    </nav>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div>
+      <table class="table table-striped">
+        <caption>2024年发布的文章</caption>
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">发布日期</th>
+          <th scope="col">标题</th>
+          <th scope="col">作者</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for article in article_list %}
+          <tr>
+            <td>{{ article.pub_date|date:"F j, Y" }}</td>
+            <td>{{ article.headline|cut1 }}</td>
+            <td>{{ article.reporter.full_name }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

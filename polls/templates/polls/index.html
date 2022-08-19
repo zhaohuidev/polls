@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  {#  <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">#}
+
+</head>
+<body>
+
+<div class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>你好,XXX</h1>
+      <p>热门问题民意调查...</p>
+    </div>
+  </div>
+  <div class="list-group">
+    <a href="#" class="list-group-item disabled">Cras justo odio</a>
+    {% if latest_question_list %}
+      {% for question in latest_question_list %}
+        <a href="{% url 'polls:detail' question.id %}" class="list-group-item">{{ question.question_text }}</a>
+      {% endfor %}
+    {% else %}
+      <p>No polls are available.</p>
+    {% endif %}
+  </div>
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li>
+        <a href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li>
+        <a href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</div>
+
+
+</body>
+</html>
