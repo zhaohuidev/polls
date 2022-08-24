@@ -48,11 +48,12 @@ INSTALLED_APPS = [
     #  personal apps
     'news.apps.NewsConfig',
     'polls.apps.PollsConfig',
+    'mysqldemo.apps.MysqldemoConfig',
 
     # third apps
-    "debug_toolbar",
+    # "debug_toolbar",
     'import_export',
-    'import_export_celery'
+    # 'import_export_celery'
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
     'author.middlewares.AuthorDefaultBackendMiddleware'
 ]
 
@@ -103,7 +104,7 @@ DATABASES = {
         'PORT': 3306,
         'USER': 'root',
         'PASSWORD': '911222ab'
-    }
+    },
 }
 
 # Password validation
@@ -169,7 +170,7 @@ SIMPLEUI_DEFAULT_THEME = 'e-blue.css'  # 指定simpleui默认的主题,指定一
 SIMPLEUI_DEFAULT_ICON = True
 SIMPLEUI_CONFIG = {
     'system_keep': True,
-    'menu_display': ['问卷调查', '权限认证', '日志记录'],  # 开启排序和过滤功能, 不填此字段为默认排序和全部显示, 空列表[] 为全部不显示.
+    'menu_display': ['问卷调查', '权限认证', 'DEMO'],  # 开启排序和过滤功能, 不填此字段为默认排序和全部显示, 空列表[] 为全部不显示.
     'dynamic': False,  # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
     'menus': [
         {
@@ -181,7 +182,7 @@ SIMPLEUI_CONFIG = {
                     'name': '问题',
                     'icon': 'fas fa-question-circle',
                     'url': 'polls/question'
-                },{
+                }, {
                     'name': '选项',
                     'icon': 'fas fa-question-circle',
                     'url': 'polls/choice'
@@ -201,6 +202,22 @@ SIMPLEUI_CONFIG = {
                     'name': '组',
                     'icon': 'fa fa-user',
                     'url': 'auth/group/'
+                },
+            ]
+        },
+        {
+            'app': 'mysqldemo',
+            'name': 'DEMO',
+            'icon': 'fas fa-user-shield',
+            'models': [
+                {
+                    'name': '职工',
+                    'icon': 'fa fa-user',
+                    'url': 'mysqldemo/employees/'
+                }, {
+                    'name': '客户',
+                    'icon': 'fa fa-user',
+                    'url': 'mysqldemo/customers/'
                 },
             ]
         },
